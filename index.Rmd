@@ -24,3 +24,60 @@ Finding data on gig workers in China was difficult, likely because those I am in
 **Reference:**
 Djankov, S., Botero, J., LaPorta, R., López-de-Silanes, F., &amp; Shleifer, A. (June 2015). The regulation of Labor. Quarterly Journal of Economics. https://scholar.harvard.edu/shleifer/publications/regulation-labor 
 
+## Milestone 3
+
+Name                 Description
+------------------  ----------------------------------------------
+`Country`           Country abbreviation in three-letter codes.
+`Polity Index`      Predictor variable: Polity Index. Ranges from -10 (most autocratic) to 10 (most democratic)
+`ss`                Outcome variable: Social Security index
+
+```{r}
+library(tidyverse)
+labor_ind <- read_csv("reg_labor.csv")
+polity <- read_csv("data/polity.csv")
+ccode <- read_csv("data/ccode1.csv")
+
+socsec <- labor_ind |>
+  select(index_socseca, Country)
+
+polity_1997 <- polity |>
+  filter(year == 1997) |>
+  pivot_longer(cols = `AFG`:`ZIM`, 
+               names_to = "country", 
+               values_to = "Polity Index") 
+```
+```{r}
+#socsec in 3-letter country code
+ss_tibble <- socsec |>
+  rename(country_name = Country) |>
+  inner_join(ccode) |>
+  select(-country_name) |>
+  rename(ss = index_socseca)
+ss_tibble
+```
+
+```{r}
+#setting up for joining socsec and polity: renaming country name variable
+polity_1997 <- polity_1997 |>
+  rename(Country = country)
+```
+
+
+```{r}
+#JOINED TWO VAR TABLE!
+j_ss_polity <- ss_tibble |>
+  left_join(polity_1997, by = join_by(Country)) |>
+  select(-year)
+j_ss_polity 
+```
+```{r}
+#visualization
+j_ss_polity |>
+  ggplot(aes(x = `Polity Index`, y = ss)) +
+  geom_point() +
+  geom_smooth()
+```
+
+
+
