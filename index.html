@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/ccode1.csv","data/polity.csv","data/wb.csv","df-Regulation_of_Labor/Civil rights-Table 1.csv","df-Regulation_of_Labor/Collective relations laws-Table 1.csv","df-Regulation_of_Labor/Employment laws -Table 1.csv","df-Regulation_of_Labor/Other Variables-Table 1.csv","df-Regulation_of_Labor/Outcomes-Table 1.csv","df-Regulation_of_Labor/Political Variables-Table 1.csv","df-Regulation_of_Labor/Social Security Laws-Table 1.csv","df-Regulation_of_Labor/Variable Definitions-Table 1.csv","df-Regulation_of_Labor copy.numbers","df-Regulation_of_Labor.numbers","df-Regulation_of_Labor.xlsx","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js","reg_labor.csv"]}
+  {"type":"character","attributes":{},"value":["data/ccode1.csv","data/gdppc1997.csv","data/polity.csv","data/wb.csv","gdppc1977.numbers","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-10-1.png","index_files/figure-html5/unnamed-chunk-11-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/figure-html5/unnamed-chunk-8-1.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/kePrint-0.0.1/kePrint.js","index_files/lightable-0.0.1/lightable.css","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js","reg_labor.csv","stmt.numbers"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1473,6 +1473,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="index_files/header-attrs-2.24/header-attrs.js"></script>
+  <script src="index_files/kePrint-0.0.1/kePrint.js"></script>
+  <link href="index_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <script src="index_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="index_files/popper-2.6.0/popper.min.js"></script>
   <link href="index_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1522,11 +1524,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>A problem with this kind of observational study is there is not really a control group – in the same region, workers who were never influenced by the policy – so the counterfactual is not balanced with an observation of the control group. If I use the before-and-after design, do I need to make sure that it was the same group of people whose results we are studying after the policy was implemented?</p>
 <p>Given the unclear definition of independent contractors in China, I may need to start off by giving the subjects an operational definition, such as number of working hours a week on one platform, proportion of income received from one single platform, etc.</p>
 <h2 id="milestone-2-proposal">Milestone 2: Proposal</h2>
-<p>Finding data on gig workers in China was difficult, likely because those I am interested in studying tend not to be classified as full-time or part-time workers, thus bearing an unclear legal status. Therefore, the new research question is to find out if there is a correlation between the degree of democracy, and the level of protection social security laws afford to citizens, and to find whether there is a statistically significant difference among countries with different legal origins (eg. French, English, German, socialist, Scandinavian). The Polity index is provided by the Gov50Data package. The social security index measures social security benefits as the average of: “(1) Old age, disability and death benefits; (2) Sickness and health benefits; and (3) Unemployment benefits” (Djankov et al., 2005). I hypothesize that there that the more democratic a country is, the more protection provided to its citizens in terms of social security. If my hypothesis is true, there would be a positive correlation between the Polity index and social security index. My null hypothesis for the second question, whether there is a significant difference in the correlation, is that there is no significant difference among the correlation of interest among the countries of different legal origins. If the null hypothesis is true, I would expect to have a non-significant p value (greater than 0.5).</p>
-<p><strong>Reference:</strong>
-Djankov, S., Botero, J., LaPorta, R., López-de-Silanes, F., &amp; Shleifer, A. (June 2015). The regulation of Labor. Quarterly Journal of Economics. <a href="https://scholar.harvard.edu/shleifer/publications/regulation-labor" class="uri">https://scholar.harvard.edu/shleifer/publications/regulation-labor</a></p>
+<p>Finding data on gig workers in China was difficult, likely because those I am interested in studying tend not to be classified as full-time or part-time workers, thus bearing an unclear legal status. Therefore, the new research question is to find out if there is a correlation between the degree of democracy, and the level of protection social security laws afford to citizens, and to find whether there is a statistically significant difference among countries with different legal origins (eg. French, English, German, socialist, Scandinavian). The Polity index is provided by the Gov50Data package. The social security index measures social security benefits as the average of: “(1) Old age, disability and death benefits; (2) Sickness and health benefits; and (3) Unemployment benefits” (Djankov et al., 2015). I hypothesize that there that the more democratic a country is, the more protection provided to its citizens in terms of social security. If my hypothesis is true, there would be a positive correlation between the Polity index and social security index. My null hypothesis for the second question, whether there is a significant difference in the correlation, is that there is no significant difference among the correlation of interest among the countries of different legal origins. If the null hypothesis is true, I would expect to have a non-significant p value (greater than 0.5).</p>
+<p><strong>Reference:</strong> Djankov, S., Botero, J., LaPorta, R., López-de-Silanes, F., &amp; Shleifer, A. (June 2015). The regulation of Labor. Quarterly Journal of Economics. <a href="https://scholar.harvard.edu/shleifer/publications/regulation-labor" class="uri">https://scholar.harvard.edu/shleifer/publications/regulation-labor</a></p>
+<p>gdp per capita data: <a href="https://stats.oecd.org/index.aspx?DataSetCode=PDB_LV#" class="uri">https://stats.oecd.org/index.aspx?DataSetCode=PDB_LV#</a></p>
 <h2 id="milestone-3">Milestone 3</h2>
 <table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 85%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Name</th>
@@ -1548,89 +1554,512 @@ Djankov, S., Botero, J., LaPorta, R., López-de-Silanes, F., &amp; Shleifer, A. 
 </tr>
 </tbody>
 </table>
+<p>When setting up data for analysis, I joined three datasets containing social security index, polity index and gdp per capita, respectively, using three-letter country code as the common variable. A preview of the separate data and the joined data can be seen below:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
-<span><span class='va'>labor_ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"reg_labor.csv"</span><span class='op'>)</span></span>
-<span><span class='va'>polity</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"data/polity.csv"</span><span class='op'>)</span></span>
-<span><span class='va'>ccode</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"data/ccode1.csv"</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>socsec</span> <span class='op'>&lt;-</span> <span class='va'>labor_ind</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>index_socseca</span>, <span class='va'>Country</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>polity_1997</span> <span class='op'>&lt;-</span> <span class='va'>polity</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>year</span> <span class='op'>==</span> <span class='fl'>1997</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer</a></span><span class='op'>(</span>cols <span class='op'>=</span> <span class='va'>`AFG`</span><span class='op'>:</span><span class='va'>`ZIM`</span>, </span>
-<span>               names_to <span class='op'>=</span> <span class='st'>"country"</span>, </span>
-<span>               values_to <span class='op'>=</span> <span class='st'>"Polity Index"</span><span class='op'>)</span> </span></code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#socsec in 3-letter country code</span></span>
-<span><span class='va'>ss_tibble</span> <span class='op'>&lt;-</span> <span class='va'>socsec</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>country_name <span class='op'>=</span> <span class='va'>Country</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>ccode</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>country_name</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>ss <span class='op'>=</span> <span class='va'>index_socseca</span><span class='op'>)</span></span>
-<span><span class='va'>ss_tibble</span></span></code></pre>
-</div>
-<pre><code># A tibble: 79 × 2
-      ss Country
-   &lt;dbl&gt; &lt;chr&gt;  
- 1 0.715 ARG    
- 2 0.734 ARM    
- 3 0.782 AUS    
- 4 0.714 AUT    
- 5 0.624 BEL    
- 6 0.370 BOL    
- 7 0.547 BRA    
- 8 0.761 BGR    
- 9 0.145 BFA    
-10 0.787 CAN    
-# ℹ 69 more rows</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">ss</th>
+<th style="text-align: left;">Country</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.7154</td>
+<td style="text-align: left;">ARG</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.7337</td>
+<td style="text-align: left;">ARM</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.7820</td>
+<td style="text-align: left;">AUS</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.7139</td>
+<td style="text-align: left;">AUT</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.6240</td>
+<td style="text-align: left;">BEL</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.3702</td>
+<td style="text-align: left;">BOL</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#setting up for joining socsec and polity: renaming country name variable</span></span>
-<span><span class='va'>polity_1997</span> <span class='op'>&lt;-</span> <span class='va'>polity_1997</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>Country <span class='op'>=</span> <span class='va'>country</span><span class='op'>)</span></span></code></pre>
-</div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">ss</th>
+<th style="text-align: left;">Country</th>
+<th style="text-align: right;">Polity Index</th>
+<th style="text-align: left;">polity_type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.7154</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Democratic</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.7337</td>
+<td style="text-align: left;">ARM</td>
+<td style="text-align: right;">-6</td>
+<td style="text-align: left;">Autocratic</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.7820</td>
+<td style="text-align: left;">AUS</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Democratic</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.6240</td>
+<td style="text-align: left;">BEL</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Democratic</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.3702</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Democratic</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.5471</td>
+<td style="text-align: left;">BRA</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">Democratic</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">ss</th>
+<th style="text-align: left;">Country</th>
+<th style="text-align: right;">Polity Index</th>
+<th style="text-align: left;">polity_type</th>
+<th style="text-align: right;">Value</th>
+<th style="text-align: right;">gdppc_k</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.7154</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Democratic</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.7337</td>
+<td style="text-align: left;">ARM</td>
+<td style="text-align: right;">-6</td>
+<td style="text-align: left;">Autocratic</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.7820</td>
+<td style="text-align: left;">AUS</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Democratic</td>
+<td style="text-align: right;">24477.41</td>
+<td style="text-align: right;">24.47741</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.6240</td>
+<td style="text-align: left;">BEL</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Democratic</td>
+<td style="text-align: right;">23732.79</td>
+<td style="text-align: right;">23.73279</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.3702</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Democratic</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.5471</td>
+<td style="text-align: left;">BRA</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">Democratic</td>
+<td style="text-align: right;">8627.01</td>
+<td style="text-align: right;">8.62701</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#JOINED TWO VAR TABLE!</span></span>
-<span><span class='va'>j_ss_polity</span> <span class='op'>&lt;-</span> <span class='va'>ss_tibble</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>polity_1997</span>, by <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/join_by.html'>join_by</a></span><span class='op'>(</span><span class='va'>Country</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>year</span><span class='op'>)</span></span>
-<span><span class='va'>j_ss_polity</span> </span></code></pre>
-</div>
-<pre><code># A tibble: 79 × 3
-      ss Country `Polity Index`
-   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;
- 1 0.715 ARG                  7
- 2 0.734 ARM                 -6
- 3 0.782 AUS                 10
- 4 0.714 AUT                 NA
- 5 0.624 BEL                 10
- 6 0.370 BOL                  9
- 7 0.547 BRA                  8
- 8 0.761 BGR                 NA
- 9 0.145 BFA                 NA
-10 0.787 CAN                 10
-# ℹ 69 more rows</code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#visualization</span></span>
-<span><span class='va'>j_ss_polity</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>`Polity Index`</span>, y <span class='op'>=</span> <span class='va'>ss</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
-</div>
 <p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="index_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+Call:
+lm(formula = ss ~ `Polity Index`, data = j_ss_polity)
+
+Coefficients:
+   (Intercept)  `Polity Index`  
+       0.52469         0.01091  </code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>join_gdppc_ss_polity</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Value</span>, y <span class='op'>=</span> <span class='va'>ss</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_log10</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-8-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fit_polity_gdp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>ss</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>`Polity Index`</span><span class='op'>)</span> , data <span class='op'>=</span> <span class='va'>join_gdppc_ss_polity</span><span class='op'>)</span></span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>fit_polity_gdp</span>,</span>
+<span>statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span><span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+0.242
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.146
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.107
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+log(Polity Index)
+</td>
+<td style="text-align:center;">
+0.183
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.071
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+p = 0.015
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.199
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.169
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#lm with gdp in THOUSANDS</span></span>
+<span><span class='va'>join_gdppc_ss_polity</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>gdppc_k</span>, y <span class='op'>=</span> <span class='va'>ss</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span><span class='op'>)</span> </span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-9-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fit_polity_gdp_k</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>ss</span> <span class='op'>~</span> <span class='va'>`Polity Index`</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>gdppc_k</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>join_gdppc_ss_polity</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>fit_polity_gdp_k</span>,</span>
+<span>statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span><span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+0.524
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.083
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Polity Index
+</td>
+<td style="text-align:center;">
+−0.015
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.008
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.079
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+log(gdppc_k)
+</td>
+<td style="text-align:center;">
+0.110
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.039
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+p = 0.012
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.335
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.252
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#lm with gdp in THOUSANDS</span></span>
+<span><span class='va'>join_gdppc_ss_polity</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>gdppc_k</span>, y <span class='op'>=</span> <span class='va'>ss</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_log10</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-10-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fit_polity_gdp_k_log</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>ss</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>`Polity Index`</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>gdppc_k</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>join_gdppc_ss_polity</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>fit_polity_gdp_k_log</span>,</span>
+<span>statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span><span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+0.323
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.306
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.307
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+log(Polity Index)
+</td>
+<td style="text-align:center;">
+0.037
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.150
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.808
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+log(gdppc_k)
+</td>
+<td style="text-align:center;">
+0.103
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.038
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+p = 0.016
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.375
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.291
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

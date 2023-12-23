@@ -7,32 +7,31 @@ output:
     self_contained: false
 ---
 
-
-
 ## Project thoughts
 
-I am interested in exploring data related to labor economic policies. Through using available data, I would like to find out if past policies have helped advance the well-being of workers (variable to be specified later on) in the food delivery industry in China. 
+I am interested in exploring data related to labor economic policies. Through using available data, I would like to find out if past policies have helped advance the well-being of workers (variable to be specified later on) in the food delivery industry in China.
 
-A problem with this kind of observational study is there is not really a control group -- in the same region, workers who were never influenced by the policy -- so the counterfactual is not balanced with an observation of the control group. If I use the before-and-after design, do I need to make sure that it was the same group of people whose results we are studying after the policy was implemented? 
+A problem with this kind of observational study is there is not really a control group -- in the same region, workers who were never influenced by the policy -- so the counterfactual is not balanced with an observation of the control group. If I use the before-and-after design, do I need to make sure that it was the same group of people whose results we are studying after the policy was implemented?
 
-Given the unclear definition of independent contractors in China, I may need to start off by giving the subjects an operational definition, such as number of working hours a week on one platform, proportion of income received from one single platform, etc. 
+Given the unclear definition of independent contractors in China, I may need to start off by giving the subjects an operational definition, such as number of working hours a week on one platform, proportion of income received from one single platform, etc.
 
 ## Milestone 2: Proposal
 
-Finding data on gig workers in China was difficult, likely because those I am interested in studying tend not to be classified as full-time or part-time workers, thus bearing an unclear legal status. Therefore, the new research question is to find out if there is a correlation between the degree of democracy, and the level of protection social security laws afford to citizens, and to find whether there is a statistically significant difference among countries with different legal origins (eg. French, English, German, socialist, Scandinavian). The Polity index is provided by the Gov50Data package. The social security index measures social security benefits as the average of: "(1) Old age, disability and death benefits; (2) Sickness and health benefits; and (3) Unemployment benefits" (Djankov et al., 2005). I hypothesize that there that the more democratic a country is, the more protection provided to its citizens in terms of social security. If my hypothesis is true, there would be a positive correlation between the Polity index and social security index. My null hypothesis for the second question, whether there is a significant difference in the correlation, is that there is no significant difference among the correlation of interest among the countries of different legal origins. If the null hypothesis is true, I would expect to have a non-significant p value (greater than 0.5). 
+Finding data on gig workers in China was difficult, likely because those I am interested in studying tend not to be classified as full-time or part-time workers, thus bearing an unclear legal status. Therefore, the new research question is to find out if there is a correlation between the degree of democracy, and the level of protection social security laws afford to citizens, and to find whether there is a statistically significant difference among countries with different legal origins (eg. French, English, German, socialist, Scandinavian). The Polity index is provided by the Gov50Data package. The social security index measures social security benefits as the average of: "(1) Old age, disability and death benefits; (2) Sickness and health benefits; and (3) Unemployment benefits" (Djankov et al., 2015). I hypothesize that there that the more democratic a country is, the more protection provided to its citizens in terms of social security. If my hypothesis is true, there would be a positive correlation between the Polity index and social security index. My null hypothesis for the second question, whether there is a significant difference in the correlation, is that there is no significant difference among the correlation of interest among the countries of different legal origins. If the null hypothesis is true, I would expect to have a non-significant p value (greater than 0.5).
 
-**Reference:**
-Djankov, S., Botero, J., LaPorta, R., López-de-Silanes, F., &amp; Shleifer, A. (June 2015). The regulation of Labor. Quarterly Journal of Economics. https://scholar.harvard.edu/shleifer/publications/regulation-labor 
+**Reference:** Djankov, S., Botero, J., LaPorta, R., López-de-Silanes, F., & Shleifer, A. (June 2015). The regulation of Labor. Quarterly Journal of Economics. <https://scholar.harvard.edu/shleifer/publications/regulation-labor>
+
+gdp per capita data: <https://stats.oecd.org/index.aspx?DataSetCode=PDB_LV#>
 
 ## Milestone 3
 
-Name                 Description
-------------------  ----------------------------------------------
-`Country`           Country abbreviation in three-letter codes.
-`Polity Index`      Predictor variable: Polity Index. Ranges from -10 (most autocratic) to 10 (most democratic)
-`ss`                Outcome variable: Social Security index
+| Name           |                                         Description                                         |
+|:---------------|:-------------------------------------------------------------------------------------------:|
+| `Country`      |                         Country abbreviation in three-letter codes.                         |
+| `Polity Index` | Predictor variable: Polity Index. Ranges from -10 (most autocratic) to 10 (most democratic) |
+| `ss`           |                           Outcome variable: Social Security index                           |
 
-```{r}
+```{r include=FALSE}
 library(tidyverse)
 labor_ind <- read_csv("reg_labor.csv")
 polity <- read_csv("data/polity.csv")
@@ -47,37 +46,115 @@ polity_1997 <- polity |>
                names_to = "country", 
                values_to = "Polity Index") 
 ```
-```{r}
+
+When setting up data for analysis, I joined three datasets containing social security index, polity index and gdp per capita, respectively, using three-letter country code as the common variable. A preview of the separate data and the joined data can be seen below:
+
+```{r echo=FALSE}
 #socsec in 3-letter country code
 ss_tibble <- socsec |>
   rename(country_name = Country) |>
   inner_join(ccode) |>
   select(-country_name) |>
-  rename(ss = index_socseca)
-ss_tibble
+  rename(ss = index_socseca) 
+
+knitr::kable(head(ss_tibble), 
+             col.names = c("Social Security Index", "Country Code")) 
 ```
 
-```{r}
+```{r include=FALSE}
 #setting up for joining socsec and polity: renaming country name variable
 polity_1997 <- polity_1997 |>
   rename(Country = country)
 ```
 
-
-```{r}
+```{r echo=FALSE}
 #JOINED TWO VAR TABLE!
 j_ss_polity <- ss_tibble |>
   left_join(polity_1997, by = join_by(Country)) |>
-  select(-year)
-j_ss_polity 
+  select(-year) |>
+  drop_na() |>
+  mutate(polity_type = case_when(
+    `Polity Index` >= -10 &  `Polity Index` <0 ~ "Autocratic", 
+ `Polity Index` >0 &  `Polity Index` <=10 ~ "Democratic"))
+knitr::kable(head(j_ss_polity), 
+             col.names = c("Social Security Index", "Country Code", "Polity Index", "Polity Type"))
+
+#joining gdp w polity&ss tibble
+gdppc <- read_csv("data/gdppc1997.csv") 
+
+gdppc <- gdppc |>
+  select(Country, Value) 
+join_gdppc_ss_polity <- j_ss_polity |>
+  left_join(gdppc, by = join_by(Country)) |>
+  mutate(gdppc_k = Value/1000)
+ 
+knitr::kable(head(join_gdppc_ss_polity), )
+
 ```
-```{r}
+
+```{r echo=FALSE}
+#2 category visualization
+lr_polity_ss <- 
+  ggplot(data = j_ss_polity, aes(x = polity_type, y = ss)) +
+  geom_point()+
+  geom_boxplot()
+lr_polity_ss
+```
+
+```{r echo=FALSE}
 #visualization
 j_ss_polity |>
   ggplot(aes(x = `Polity Index`, y = ss)) +
   geom_point() +
-  geom_smooth()
+  geom_smooth() +
+  labs(y = "Social Security Index")
 ```
 
+```{r echo=FALSE}
+lm(ss ~ `Polity Index`, data = j_ss_polity)
+```
 
+```{r}
+join_gdppc_ss_polity |>
+  ggplot(aes(x = Value, y = ss)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_log10()
 
+fit_polity_gdp <- lm(ss ~ log(`Polity Index`) , data = join_gdppc_ss_polity)
+modelsummary::modelsummary(fit_polity_gdp,
+statistic = c("s.e. = {std.error}",
+"p = {p.value}"),
+gof_map = c("nobs", "r.squared", "adj.r.squared"))
+```
+
+```{r}
+#lm with gdp in THOUSANDS
+join_gdppc_ss_polity |>
+  ggplot(aes(x = gdppc_k, y = ss)) +
+  geom_point() +
+  geom_smooth() 
+
+fit_polity_gdp_k <- lm(ss ~ `Polity Index` + log(gdppc_k), data = join_gdppc_ss_polity)
+
+modelsummary::modelsummary(fit_polity_gdp_k,
+statistic = c("s.e. = {std.error}",
+"p = {p.value}"),
+gof_map = c("nobs", "r.squared", "adj.r.squared"))
+```
+
+```{r}
+#lm with gdp in THOUSANDS
+join_gdppc_ss_polity |>
+  ggplot(aes(x = gdppc_k, y = ss)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_log10()
+
+fit_polity_gdp_k_log <- lm(ss ~ log(`Polity Index`) + log(gdppc_k), data = join_gdppc_ss_polity)
+
+modelsummary::modelsummary(fit_polity_gdp_k_log,
+statistic = c("s.e. = {std.error}",
+"p = {p.value}"),
+gof_map = c("nobs", "r.squared", "adj.r.squared"))
+```
