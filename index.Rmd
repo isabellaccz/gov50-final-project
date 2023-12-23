@@ -20,7 +20,7 @@ OECD. "Level of GDP per Capita and Productivity." ©OECD, stats.oecd.org/index.a
 ## Data
 
 | Name           |                                         Description                                         |
-|:-------------------|:--------------------------------------------------:|
+|:--------------|:-------------------------------------------------------:|
 | `Country`      |                         Country abbreviation in three-letter codes.                         |
 | `Polity Index` | Predictor variable: Polity Index. Ranges from -10 (most autocratic) to 10 (most democratic) |
 | `ss`           |                           Outcome variable: Social Security index                           |
@@ -62,7 +62,7 @@ polity_1997 <- polity_1997 |>
   rename(Country = country)
 ```
 
-```{r echo=FALSE}
+```{r include=FALSE}
 #JOINED TWO VAR TABLE!
 j_ss_polity <- ss_tibble |>
   left_join(polity_1997, by = join_by(Country)) |>
@@ -71,9 +71,13 @@ j_ss_polity <- ss_tibble |>
   mutate(polity_type = case_when(
     `Polity Index` >= -10 &  `Polity Index` <0 ~ "Autocratic", 
  `Polity Index` >0 &  `Polity Index` <=10 ~ "Democratic"))
-knitr::kable(head(j_ss_polity), 
-             col.names = c("Social Security Index", "Country Code", "Polity Index", "Polity Type"))
+```
 
+```{r echo=FALSE}
+knitr::kable(head(polity_1997))
+```
+
+```{r echo=FALSE}
 #joining gdp w polity&ss tibble
 gdppc <- read_csv("data/gdppc1997.csv") 
 
@@ -82,6 +86,12 @@ gdppc <- gdppc |>
 join_gdppc_ss_polity <- j_ss_polity |>
   left_join(gdppc, by = join_by(Country)) 
  
+knitr::kable(head(gdppc), 
+             col.names = c("Country", "GDP Per Capita"))
+```
+
+```{r echo=FALSE}
+
 knitr::kable(head(join_gdppc_ss_polity), 
              col.names = c("Social Security Index", "Country Code", "Polity Index", "Polity Type", "GDP Per Capita"))
 
@@ -94,7 +104,8 @@ Before going into the linear regression to test the notion, a boxplot can show t
 lr_polity_ss <- 
   ggplot(data = j_ss_polity, aes(x = polity_type, y = ss)) +
   geom_point()+
-  geom_boxplot()
+  geom_boxplot() +
+  labs(x = "Polity Type", y = "Social Security ")
 lr_polity_ss
 ```
 
@@ -123,9 +134,10 @@ In addition to gauging based on the shape of the simple linear regression model 
 
 ```{r echo=FALSE}
 join_gdppc_ss_polity |>
-  ggplot(aes(x = Value, y = ss)) +
+  ggplot(aes(x = `Polity Index`, y = ss)) +
   geom_point() +
-  geom_smooth() 
+  geom_smooth() +
+  labs(x = "Polity Index", y = "Social Security ")
   
 fit_polity_gdp <- lm(ss ~ `Polity Index`, data = join_gdppc_ss_polity)
 modelsummary::modelsummary(fit_polity_gdp,
@@ -145,7 +157,8 @@ The following is an attempt to visualize a potential linear regression of GDP pe
 join_gdppc_ss_polity |>
   ggplot(aes(x = Value, y = ss)) +
   geom_point() +
-  geom_smooth() 
+  geom_smooth() +
+  labs(x = "GDP Per Cap in USD", y = "Social Security ")
 
 fit_ss_gdp <- lm(ss ~ Value, data = join_gdppc_ss_polity)
 modelsummary::modelsummary(fit_ss_gdp,
@@ -172,6 +185,6 @@ gof_map = c("nobs", "r.squared", "adj.r.squared"))
 
 From the results, it is clear that the correlation between the independent variable polity index is weak and insignificant, without the variable of GDP per capita controlled (as shown in the simple linear regression) and with the variable GDP per capita controlled (as shown in the multiple linear regression). There is not enough evidence to reject the null hypothesis that there is no linear correlation between the level of democracy and the level of protection countries afford to their citizens in terms of social security laws.
 
-### Limitations 
+### Limitations
 
 This project uses only data from 1997. Because of the missing data in each of the three datasets (GDP per capita, social security index, and polity index), the joint data with non-missing values in all three variables eventually decreased to only 19 when the project reached the Multiple Linear Regression section. The small sample size may contribute to greater variability of both social security index and polity index, so this may lead to the data yielding weaker regression coefficient than if there was a greater sample.
