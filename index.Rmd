@@ -7,29 +7,24 @@ output:
     self_contained: false
 ---
 
-## Project thoughts
+**Introduction**
 
-I am interested in exploring data related to labor economic policies. Through using available data, I would like to find out if past policies have helped advance the well-being of workers (variable to be specified later on) in the food delivery industry in China.
+Are autocratic-leaning countries exploit workers worse than democratic-leaning countries? This research attempts to answer whether a statistically significant correlation exist between the degree of democracy, and the level of protection social security laws afford to citizens, and how such correlation may change when controlling for the GDP per capita in each available country. The Polity index is provided by the Gov 50 Data package. With a possible value of -10 to 10 for any country, the Polity index measures the level of democracy that a firm affords. The social security index measures social security benefits as the average of: "(1) Old age, disability and death benefits; (2) Sickness and health benefits; and (3) Unemployment benefits" (Djankov et al., 2015). This project attempts to test the stereotype against autocratic-leaning countries -- the more democratic a country is, the more protection is provided to its citizens in terms of social security. If my hypothesis is true, there would be a positive correlation between the Polity index and social security index. My null hypothesis for the second question is whether there is a significant correlation between Polity index and social security index. The alternative then, would be the stereotype: higher Polity index predicts higher social security index. If we fail to reject the null hypothesis, I expect to have a non-significant p value (greater than 0.5) for the regression coefficients of the Polity index. Otherwise, I would need to observe a strong, significant correlation between social security and polity for there to be enough evidence to reject the null hypothesis and adopt a two-sided alternative hypothesis that level of democracy can predict level of social security protection in either directions.
 
-A problem with this kind of observational study is there is not really a control group -- in the same region, workers who were never influenced by the policy -- so the counterfactual is not balanced with an observation of the control group. If I use the before-and-after design, do I need to make sure that it was the same group of people whose results we are studying after the policy was implemented?
+**Reference:**
 
-Given the unclear definition of independent contractors in China, I may need to start off by giving the subjects an operational definition, such as number of working hours a week on one platform, proportion of income received from one single platform, etc.
+Djankov, S., Botero, J., LaPorta, R., López-de-Silanes, F., & Shleifer, A. (June 2015). The Regulation of Labor. Quarterly Journal of Economics. <https://scholar.harvard.edu/shleifer/publications/regulation-labor>
 
-## Milestone 2: Proposal
+OECD. "Level of GDP per Capita and Productivity." ©OECD, stats.oecd.org/index.aspx?DataSetCode=PDB_LV.
 
-Finding data on gig workers in China was difficult, likely because those I am interested in studying tend not to be classified as full-time or part-time workers, thus bearing an unclear legal status. Therefore, the new research question is to find out if there is a correlation between the degree of democracy, and the level of protection social security laws afford to citizens, and to find whether there is a statistically significant difference among countries with different legal origins (eg. French, English, German, socialist, Scandinavian). The Polity index is provided by the Gov50Data package. The social security index measures social security benefits as the average of: "(1) Old age, disability and death benefits; (2) Sickness and health benefits; and (3) Unemployment benefits" (Djankov et al., 2015). I hypothesize that there that the more democratic a country is, the more protection provided to its citizens in terms of social security. If my hypothesis is true, there would be a positive correlation between the Polity index and social security index. My null hypothesis for the second question, whether there is a significant difference in the correlation, is that there is no significant difference among the correlation of interest among the countries of different legal origins. If the null hypothesis is true, I would expect to have a non-significant p value (greater than 0.5).
-
-**Reference:** Djankov, S., Botero, J., LaPorta, R., López-de-Silanes, F., & Shleifer, A. (June 2015). The regulation of Labor. Quarterly Journal of Economics. <https://scholar.harvard.edu/shleifer/publications/regulation-labor>
-
-gdp per capita data: <https://stats.oecd.org/index.aspx?DataSetCode=PDB_LV#>
-
-## Milestone 3
+## Data
 
 | Name           |                                         Description                                         |
-|:---------------|:-------------------------------------------------------------------------------------------:|
+|:-------------------|:--------------------------------------------------:|
 | `Country`      |                         Country abbreviation in three-letter codes.                         |
 | `Polity Index` | Predictor variable: Polity Index. Ranges from -10 (most autocratic) to 10 (most democratic) |
 | `ss`           |                           Outcome variable: Social Security index                           |
+| `Value`        |                          GDP per capita for each country (in USD)                           |
 
 ```{r include=FALSE}
 library(tidyverse)
@@ -47,7 +42,7 @@ polity_1997 <- polity |>
                values_to = "Polity Index") 
 ```
 
-When setting up data for analysis, I joined three datasets containing social security index, polity index and gdp per capita, respectively, using three-letter country code as the common variable. A preview of the separate data and the joined data can be seen below:
+When setting up data for analysis, I joined three datasets containing social security index, polity index and GDP per capita, respectively, using three-letter country code as the common variable. A preview of the separate data and the joined data can be seen below:
 
 ```{r echo=FALSE}
 #socsec in 3-letter country code
@@ -85,12 +80,14 @@ gdppc <- read_csv("data/gdppc1997.csv")
 gdppc <- gdppc |>
   select(Country, Value) 
 join_gdppc_ss_polity <- j_ss_polity |>
-  left_join(gdppc, by = join_by(Country)) |>
-  mutate(gdppc_k = Value/1000)
+  left_join(gdppc, by = join_by(Country)) 
  
-knitr::kable(head(join_gdppc_ss_polity), )
+knitr::kable(head(join_gdppc_ss_polity), 
+             col.names = c("Social Security Index", "Country Code", "Polity Index", "Polity Type", "GDP Per Capita"))
 
 ```
+
+Before going into the linear regression to test the notion, a boxplot can show the general distribution of social security index for two levels of democracy (autocratic and democratic). A boxplot shows that countries with positive polity scores (on the democratic end of the spectrum) have a higher mean polity score than countries with negative polity scores (on the autocratic end of the spectrum). The spread of the middle 50% of the social security index for more democratic countries is less than that of the more autocratic countries.
 
 ```{r echo=FALSE}
 #2 category visualization
@@ -101,6 +98,12 @@ lr_polity_ss <-
 lr_polity_ss
 ```
 
+## Results
+
+### Simple Linear Regression: Polity Index v. Social Security Index
+
+Next, linear regression to help visualize social security index in relation to more specific polity scores, instead of two broad categories.
+
 ```{r echo=FALSE}
 #visualization
 j_ss_polity |>
@@ -110,51 +113,65 @@ j_ss_polity |>
   labs(y = "Social Security Index")
 ```
 
+This linear regression model demonstrates no noticeable linear regression. If we look at the linear regression coefficients, the coefficient for polity index indicates that every 1 unit increase in polity index is correlated with a 0.01091 increase in social security index, given that there is a significant linear correlation between the social security index and polity index.
+
 ```{r echo=FALSE}
 lm(ss ~ `Polity Index`, data = j_ss_polity)
 ```
 
-```{r}
+In addition to gauging based on the shape of the simple linear regression model above, we can observe in the below summary table that the p value for the slope of the simple linear regression is 0.108, which is smaller than the alpha of 0.05. Therefore, there is not enough evidence to reject the null hypothesis that there is no significant correlation between Polity index and social security index in the countries studied (contrary to the notion that more autocratic countries have less social security protection afforded to citizens). From the summary table, the R\^2 is 0.072, indicating that only 7.2 percent of the countries studied can be explained by the linear regression model with polity index being the independent variable.
+
+```{r echo=FALSE}
 join_gdppc_ss_polity |>
   ggplot(aes(x = Value, y = ss)) +
   geom_point() +
-  geom_smooth() +
-  scale_x_log10()
-
-fit_polity_gdp <- lm(ss ~ log(`Polity Index`) , data = join_gdppc_ss_polity)
+  geom_smooth() 
+  
+fit_polity_gdp <- lm(ss ~ `Polity Index`, data = join_gdppc_ss_polity)
 modelsummary::modelsummary(fit_polity_gdp,
 statistic = c("s.e. = {std.error}",
 "p = {p.value}"),
 gof_map = c("nobs", "r.squared", "adj.r.squared"))
 ```
 
-```{r}
+### 
+
+### Simple Linear Regression: GDP Per Capita v. Social Security
+
+The following is an attempt to visualize a potential linear regression of GDP per capita and social security index.
+
+```{r echo=FALSE}
 #lm with gdp in THOUSANDS
 join_gdppc_ss_polity |>
-  ggplot(aes(x = gdppc_k, y = ss)) +
+  ggplot(aes(x = Value, y = ss)) +
   geom_point() +
   geom_smooth() 
 
-fit_polity_gdp_k <- lm(ss ~ `Polity Index` + log(gdppc_k), data = join_gdppc_ss_polity)
-
-modelsummary::modelsummary(fit_polity_gdp_k,
+fit_ss_gdp <- lm(ss ~ Value, data = join_gdppc_ss_polity)
+modelsummary::modelsummary(fit_ss_gdp,
 statistic = c("s.e. = {std.error}",
 "p = {p.value}"),
 gof_map = c("nobs", "r.squared", "adj.r.squared"))
 ```
 
-```{r}
-#lm with gdp in THOUSANDS
-join_gdppc_ss_polity |>
-  ggplot(aes(x = gdppc_k, y = ss)) +
-  geom_point() +
-  geom_smooth() +
-  scale_x_log10()
+Again, even after changing the independent variable to GDP per capita, there appears no correlation between GDP per capita and social security index between the countries. From the summary table above, R\^2 of 0.181 suggests that only 18.1% of the countries can be explained by the linear model above. The linear regression is a poor model for predicting social security index from GDP per capita.
 
-fit_polity_gdp_k_log <- lm(ss ~ log(`Polity Index`) + log(gdppc_k), data = join_gdppc_ss_polity)
+### Multiple Linear Regression: Polity Index & GDP Per Capita v. Social Security Index
 
-modelsummary::modelsummary(fit_polity_gdp_k_log,
+Since the aim of this research is to see whether the preconceived notion that more democratic countries provides better social security protection, and since I've decided to test the notion through testing whether there is enough evidence to reject the null hypothesis. A step further would be to test if the multiple linear regression confirms the two simple linear regressions above to yield a weak correlation and non-significant p-value. From the summary table below, we can see that polity index has a -0.012 coefficient in predicting social security. This coefficient suggests none to weak correlation. Coupled with a p value of 0.165, we don't have enough evidence to reject the null hypothesis that social security protection is not correlated with a country's level of democracy.
+
+```{r echo=FALSE}
+fit_polity_gdp <- lm(ss ~ `Polity Index` + Value, data = join_gdppc_ss_polity)
+modelsummary::modelsummary(fit_polity_gdp,
 statistic = c("s.e. = {std.error}",
 "p = {p.value}"),
 gof_map = c("nobs", "r.squared", "adj.r.squared"))
 ```
+
+## Conclusion
+
+From the results, it is clear that the correlation between the independent variable polity index is weak and insignificant, without the variable of GDP per capita controlled (as shown in the simple linear regression) and with the variable GDP per capita controlled (as shown in the multiple linear regression). There is not enough evidence to reject the null hypothesis that there is no linear correlation between the level of democracy and the level of protection countries afford to their citizens in terms of social security laws.
+
+### Limitations 
+
+This project uses only data from 1997. Because of the missing data in each of the three datasets (GDP per capita, social security index, and polity index), the joint data with non-missing values in all three variables eventually decreased to only 19 when the project reached the Multiple Linear Regression section. The small sample size may contribute to greater variability of both social security index and polity index, so this may lead to the data yielding weaker regression coefficient than if there was a greater sample.

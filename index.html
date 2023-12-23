@@ -1519,19 +1519,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h2 id="project-thoughts">Project thoughts</h2>
-<p>I am interested in exploring data related to labor economic policies. Through using available data, I would like to find out if past policies have helped advance the well-being of workers (variable to be specified later on) in the food delivery industry in China.</p>
-<p>A problem with this kind of observational study is there is not really a control group – in the same region, workers who were never influenced by the policy – so the counterfactual is not balanced with an observation of the control group. If I use the before-and-after design, do I need to make sure that it was the same group of people whose results we are studying after the policy was implemented?</p>
-<p>Given the unclear definition of independent contractors in China, I may need to start off by giving the subjects an operational definition, such as number of working hours a week on one platform, proportion of income received from one single platform, etc.</p>
-<h2 id="milestone-2-proposal">Milestone 2: Proposal</h2>
-<p>Finding data on gig workers in China was difficult, likely because those I am interested in studying tend not to be classified as full-time or part-time workers, thus bearing an unclear legal status. Therefore, the new research question is to find out if there is a correlation between the degree of democracy, and the level of protection social security laws afford to citizens, and to find whether there is a statistically significant difference among countries with different legal origins (eg. French, English, German, socialist, Scandinavian). The Polity index is provided by the Gov50Data package. The social security index measures social security benefits as the average of: “(1) Old age, disability and death benefits; (2) Sickness and health benefits; and (3) Unemployment benefits” (Djankov et al., 2015). I hypothesize that there that the more democratic a country is, the more protection provided to its citizens in terms of social security. If my hypothesis is true, there would be a positive correlation between the Polity index and social security index. My null hypothesis for the second question, whether there is a significant difference in the correlation, is that there is no significant difference among the correlation of interest among the countries of different legal origins. If the null hypothesis is true, I would expect to have a non-significant p value (greater than 0.5).</p>
-<p><strong>Reference:</strong> Djankov, S., Botero, J., LaPorta, R., López-de-Silanes, F., &amp; Shleifer, A. (June 2015). The regulation of Labor. Quarterly Journal of Economics. <a href="https://scholar.harvard.edu/shleifer/publications/regulation-labor" class="uri">https://scholar.harvard.edu/shleifer/publications/regulation-labor</a></p>
-<p>gdp per capita data: <a href="https://stats.oecd.org/index.aspx?DataSetCode=PDB_LV#" class="uri">https://stats.oecd.org/index.aspx?DataSetCode=PDB_LV#</a></p>
-<h2 id="milestone-3">Milestone 3</h2>
+<p><strong>Introduction</strong></p>
+<p>Are autocratic-leaning countries exploit workers worse than democratic-leaning countries? This research attempts to answer whether a statistically significant correlation exist between the degree of democracy, and the level of protection social security laws afford to citizens, and how such correlation may change when controlling for the GDP per capita in each available country. The Polity index is provided by the Gov 50 Data package. With a possible value of -10 to 10 for any country, the Polity index measures the level of democracy that a firm affords. The social security index measures social security benefits as the average of: “(1) Old age, disability and death benefits; (2) Sickness and health benefits; and (3) Unemployment benefits” (Djankov et al., 2015). This project attempts to test the stereotype against autocratic-leaning countries – the more democratic a country is, the more protection is provided to its citizens in terms of social security. If my hypothesis is true, there would be a positive correlation between the Polity index and social security index. My null hypothesis for the second question is whether there is a significant correlation between Polity index and social security index. The alternative then, would be the stereotype: higher Polity index predicts higher social security index. If we fail to reject the null hypothesis, I expect to have a non-significant p value (greater than 0.5) for the regression coefficients of the Polity index. Otherwise, I would need to observe a strong, significant correlation between social security and polity for there to be enough evidence to reject the null hypothesis and adopt a two-sided alternative hypothesis that level of democracy can predict level of social security protection in either directions.</p>
+<p><strong>Reference:</strong></p>
+<p>Djankov, S., Botero, J., LaPorta, R., López-de-Silanes, F., &amp; Shleifer, A. (June 2015). The Regulation of Labor. Quarterly Journal of Economics. <a href="https://scholar.harvard.edu/shleifer/publications/regulation-labor" class="uri">https://scholar.harvard.edu/shleifer/publications/regulation-labor</a></p>
+<p>OECD. “Level of GDP per Capita and Productivity.” ©OECD, stats.oecd.org/index.aspx?DataSetCode=PDB_LV.</p>
+<h2 id="data">Data</h2>
 <table>
 <colgroup>
-<col style="width: 14%" />
-<col style="width: 85%" />
+<col style="width: 27%" />
+<col style="width: 72%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1552,15 +1549,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <td style="text-align: left;"><code>ss</code></td>
 <td style="text-align: center;">Outcome variable: Social Security index</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;"><code>Value</code></td>
+<td style="text-align: center;">GDP per capita for each country (in USD)</td>
+</tr>
 </tbody>
 </table>
-<p>When setting up data for analysis, I joined three datasets containing social security index, polity index and gdp per capita, respectively, using three-letter country code as the common variable. A preview of the separate data and the joined data can be seen below:</p>
+<p>When setting up data for analysis, I joined three datasets containing social security index, polity index and GDP per capita, respectively, using three-letter country code as the common variable. A preview of the separate data and the joined data can be seen below:</p>
 <div class="layout-chunk" data-layout="l-body">
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: right;">ss</th>
-<th style="text-align: left;">Country</th>
+<th style="text-align: right;">Social Security Index</th>
+<th style="text-align: left;">Country Code</th>
 </tr>
 </thead>
 <tbody>
@@ -1595,10 +1596,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: right;">ss</th>
-<th style="text-align: left;">Country</th>
+<th style="text-align: right;">Social Security Index</th>
+<th style="text-align: left;">Country Code</th>
 <th style="text-align: right;">Polity Index</th>
-<th style="text-align: left;">polity_type</th>
+<th style="text-align: left;">Polity Type</th>
 </tr>
 </thead>
 <tbody>
@@ -1641,14 +1642,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </tbody>
 </table>
 <table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 16%" />
+<col style="width: 20%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: right;">ss</th>
-<th style="text-align: left;">Country</th>
+<th style="text-align: right;">Social Security Index</th>
+<th style="text-align: left;">Country Code</th>
 <th style="text-align: right;">Polity Index</th>
-<th style="text-align: left;">polity_type</th>
-<th style="text-align: right;">Value</th>
-<th style="text-align: right;">gdppc_k</th>
+<th style="text-align: left;">Polity Type</th>
+<th style="text-align: right;">GDP Per Capita</th>
 </tr>
 </thead>
 <tbody>
@@ -1658,14 +1665,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <td style="text-align: right;">7</td>
 <td style="text-align: left;">Democratic</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">0.7337</td>
 <td style="text-align: left;">ARM</td>
 <td style="text-align: right;">-6</td>
 <td style="text-align: left;">Autocratic</td>
-<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
@@ -1674,7 +1679,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <td style="text-align: right;">10</td>
 <td style="text-align: left;">Democratic</td>
 <td style="text-align: right;">24477.41</td>
-<td style="text-align: right;">24.47741</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">0.6240</td>
@@ -1682,14 +1686,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <td style="text-align: right;">10</td>
 <td style="text-align: left;">Democratic</td>
 <td style="text-align: right;">23732.79</td>
-<td style="text-align: right;">23.73279</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">0.3702</td>
 <td style="text-align: left;">BOL</td>
 <td style="text-align: right;">9</td>
 <td style="text-align: left;">Democratic</td>
-<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
@@ -1698,17 +1700,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <td style="text-align: right;">8</td>
 <td style="text-align: left;">Democratic</td>
 <td style="text-align: right;">8627.01</td>
-<td style="text-align: right;">8.62701</td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>Before going into the linear regression to test the notion, a boxplot can show the general distribution of social security index for two levels of democracy (autocratic and democratic). A boxplot shows that countries with positive polity scores (on the democratic end of the spectrum) have a higher mean polity score than countries with negative polity scores (on the autocratic end of the spectrum). The spread of the middle 50% of the social security index for more democratic countries is less than that of the more autocratic countries.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
+<h2 id="results">Results</h2>
+<h3 id="simple-linear-regression-polity-index-v.-social-security-index">Simple Linear Regression: Polity Index v. Social Security Index</h3>
+<p>Next, linear regression to help visualize social security index in relation to more specific polity scores, instead of two broad categories.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="index_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
+<p>This linear regression model demonstrates no noticeable linear regression. If we look at the linear regression coefficients, the coefficient for polity index indicates that every 1 unit increase in polity index is correlated with a 0.01091 increase in social security index, given that there is a significant linear correlation between the social security index and polity index.</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre><code>
 Call:
@@ -1718,22 +1724,9 @@ Coefficients:
    (Intercept)  `Polity Index`  
        0.52469         0.01091  </code></pre>
 </div>
+<p>In addition to gauging based on the shape of the simple linear regression model above, we can observe in the below summary table that the p value for the slope of the simple linear regression is 0.108, which is smaller than the alpha of 0.05. Therefore, there is not enough evidence to reject the null hypothesis that there is no significant correlation between Polity index and social security index in the countries studied (contrary to the notion that more autocratic countries have less social security protection afforded to citizens). From the summary table, the R^2 is 0.072, indicating that only 7.2 percent of the countries studied can be explained by the linear regression model with polity index being the independent variable.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>join_gdppc_ss_polity</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Value</span>, y <span class='op'>=</span> <span class='va'>ss</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_log10</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
-</div>
 <img src="index_files/figure-html5/unnamed-chunk-8-1.png" width="624" />
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fit_polity_gdp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>ss</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>`Polity Index`</span><span class='op'>)</span> , data <span class='op'>=</span> <span class='va'>join_gdppc_ss_polity</span><span class='op'>)</span></span>
-<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>fit_polity_gdp</span>,</span>
-<span>statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
-<span><span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
-<span>gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1750,113 +1743,14 @@ Coefficients:
 (Intercept)
 </td>
 <td style="text-align:center;">
-0.242
+0.525
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 0.146
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 0.107
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-log(Polity Index)
-</td>
-<td style="text-align:center;">
-0.183
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 0.071
-</td>
-</tr>
-<tr>
-<td style="text-align:left;box-shadow: 0px 1.5px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1.5px">
-p = 0.015
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Num.Obs.
-</td>
-<td style="text-align:center;">
-29
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-R2
-</td>
-<td style="text-align:center;">
-0.199
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-R2 Adj.
-</td>
-<td style="text-align:center;">
-0.169
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#lm with gdp in THOUSANDS</span></span>
-<span><span class='va'>join_gdppc_ss_polity</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>gdppc_k</span>, y <span class='op'>=</span> <span class='va'>ss</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span><span class='op'>)</span> </span></code></pre>
-</div>
-<img src="index_files/figure-html5/unnamed-chunk-9-1.png" width="624" />
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fit_polity_gdp_k</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>ss</span> <span class='op'>~</span> <span class='va'>`Polity Index`</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>gdppc_k</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>join_gdppc_ss_polity</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>fit_polity_gdp_k</span>,</span>
-<span>statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
-<span><span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
-<span>gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:center;">
- (1)
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-(Intercept)
-</td>
-<td style="text-align:center;">
-0.524
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 0.083
+s.e. = 0.051
 </td>
 </tr>
 <tr>
@@ -1871,43 +1765,108 @@ p = &lt;0.001
 Polity Index
 </td>
 <td style="text-align:center;">
-−0.015
+0.011
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 0.008
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 0.079
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-log(gdppc_k)
-</td>
-<td style="text-align:center;">
-0.110
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 0.039
+s.e. = 0.007
 </td>
 </tr>
 <tr>
 <td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1.5px">
-p = 0.012
+p = 0.108
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.072
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.046
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="section"></h3>
+<h3 id="simple-linear-regression-gdp-per-capita-v.-social-security">Simple Linear Regression: GDP Per Capita v. Social Security</h3>
+<p>The following is an attempt to visualize a potential linear regression of GDP per capita and social security index.</p>
+<div class="layout-chunk" data-layout="l-body">
+<img src="index_files/figure-html5/unnamed-chunk-9-1.png" width="624" />
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+0.589
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.055
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Value
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+p = 0.069
 </td>
 </tr>
 <tr>
@@ -1923,7 +1882,7 @@ Num.Obs.
 R2
 </td>
 <td style="text-align:center;">
-0.335
+0.181
 </td>
 </tr>
 <tr>
@@ -1931,30 +1890,16 @@ R2
 R2 Adj.
 </td>
 <td style="text-align:center;">
-0.252
+0.133
 </td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>Again, even after changing the independent variable to GDP per capita, there appears no correlation between GDP per capita and social security index between the countries. From the summary table above, R^2 of 0.181 suggests that only 18.1% of the countries can be explained by the linear model above. The linear regression is a poor model for predicting social security index from GDP per capita.</p>
+<h3 id="multiple-linear-regression-polity-index-gdp-per-capita-v.-social-security-index">Multiple Linear Regression: Polity Index &amp; GDP Per Capita v. Social Security Index</h3>
+<p>Since the aim of this research is to see whether the preconceived notion that more democratic countries provides better social security protection, and since I’ve decided to test the notion through testing whether there is enough evidence to reject the null hypothesis. A step further would be to test if the multiple linear regression confirms the two simple linear regressions above to yield a weak correlation and non-significant p-value. From the summary table below, we can see that polity index has a -0.012 coefficient in predicting social security. This coefficient suggests none to weak correlation. Coupled with a p value of 0.165, we don’t have enough evidence to reject the null hypothesis that social security protection is not correlated with a country’s level of democracy.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#lm with gdp in THOUSANDS</span></span>
-<span><span class='va'>join_gdppc_ss_polity</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>gdppc_k</span>, y <span class='op'>=</span> <span class='va'>ss</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_log10</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
-</div>
-<img src="index_files/figure-html5/unnamed-chunk-10-1.png" width="624" />
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fit_polity_gdp_k_log</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>ss</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>`Polity Index`</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>gdppc_k</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>join_gdppc_ss_polity</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>fit_polity_gdp_k_log</span>,</span>
-<span>statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
-<span><span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
-<span>gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1971,65 +1916,65 @@ R2 Adj.
 (Intercept)
 </td>
 <td style="text-align:center;">
-0.323
+0.640
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 0.306
+s.e. = 0.064
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-p = 0.307
+p = &lt;0.001
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-log(Polity Index)
+Polity Index
 </td>
 <td style="text-align:center;">
-0.037
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 0.150
+−0.012
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-p = 0.808
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-log(gdppc_k)
-</td>
-<td style="text-align:center;">
-0.103
+s.e. = 0.008
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 0.038
+p = 0.165
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Value
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.000
 </td>
 </tr>
 <tr>
 <td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1.5px">
-p = 0.016
+p = 0.025
 </td>
 </tr>
 <tr>
@@ -2037,7 +1982,7 @@ p = 0.016
 Num.Obs.
 </td>
 <td style="text-align:center;">
-18
+19
 </td>
 </tr>
 <tr>
@@ -2045,7 +1990,7 @@ Num.Obs.
 R2
 </td>
 <td style="text-align:center;">
-0.375
+0.277
 </td>
 </tr>
 <tr>
@@ -2053,12 +1998,16 @@ R2
 R2 Adj.
 </td>
 <td style="text-align:center;">
-0.291
+0.187
 </td>
 </tr>
 </tbody>
 </table>
 </div>
+<h2 id="conclusion">Conclusion</h2>
+<p>From the results, it is clear that the correlation between the independent variable polity index is weak and insignificant, without the variable of GDP per capita controlled (as shown in the simple linear regression) and with the variable GDP per capita controlled (as shown in the multiple linear regression). There is not enough evidence to reject the null hypothesis that there is no linear correlation between the level of democracy and the level of protection countries afford to their citizens in terms of social security laws.</p>
+<h3 id="limitations">Limitations</h3>
+<p>This project uses only data from 1997. Because of the missing data in each of the three datasets (GDP per capita, social security index, and polity index), the joint data with non-missing values in all three variables eventually decreased to only 19 when the project reached the Multiple Linear Regression section. The small sample size may contribute to greater variability of both social security index and polity index, so this may lead to the data yielding weaker regression coefficient than if there was a greater sample.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
